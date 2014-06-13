@@ -1,0 +1,7 @@
+#bug及解决方法
+
+
+#CSS
+  * div多余高度
+    * div内包含inline-block类型空元素时，div总是比内部元素高3px，当div是页面最下方元素时，即使固定div高度，其下方也会多3px。
+    * 解决办法：将div的overflow设置为hidden
