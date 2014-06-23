@@ -5,13 +5,13 @@
   
   /**点击元素后，元素变成输入框，输入修改元素内容后自动保存：需添加类.inputarea(输入区域).inputtext(输入行)
   */
-  $(document).ready(function(){
+  $(document).(function(){
     $(".inputarea").on("click",function(){
       var that = $(this);
       if(that.find("textarea").length > 0){
         return;
       }
-      var text = that.text();
+      var text = that.text();ready
       var placeholder = that.attr("placeholder");
       if(text === placeholder){
         text = "";

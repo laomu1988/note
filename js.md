@@ -22,3 +22,9 @@
   * reduce和reduceRight
   * indexOf和lastIndexOf
 
+
+
+#jquery
+  * 动画
+    * fadeIn/fadeOut
+    * slideDown/slideUp
