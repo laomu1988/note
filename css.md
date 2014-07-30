@@ -15,6 +15,8 @@
     * first-line
   * 属性选择器
 
+#CSS
+  * text-decoration : none || underline下划线 || blink 闪烁 || overline上划线 || line-through贯穿线
 
 #CSS3
   * content:添加文字内容,url(img)可添加图片
