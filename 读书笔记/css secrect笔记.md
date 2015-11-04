@@ -9,4 +9,9 @@
 
 # 背景和边框
   * 半透明边框颜色和背景颜色相同时，半透明边框不起作用：背景颜色边界 background-clip
+  * 多个border: outline shadow
+  * 背景位置: background-position: right 10px bottom 20px; background-origin,calc()
+  * 外方内圆角: outline实现外方,border-radius实现内圆,box-shadow填充中间空白部分
+  * 条纹背景: background:linear-gradient(#fb3,#58a)
+  * 垂直条纹,倾斜条纹,三角格子.多套背景background-position: 0 0, 15px 15px;
   
