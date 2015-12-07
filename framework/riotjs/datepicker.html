@@ -1,0 +1,212 @@
+<datepicker>
+    <!--日期选择器
+input：输入框
+now: 当前选择日期
+from： 开始日期
+to： 结束日期
+-->
+    <style>
+        .__self {
+            line-height: 2em;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        div {
+            -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;
+        }
+
+        .head {
+            position: relative;
+        }
+
+        .prev, .next {
+            position: absolute;
+            padding: 0 10px;
+            background: #EFEDEB;
+            width: auto;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+
+        .prev:hover, .next:hover {
+            background: #9d9d9d;
+        }
+
+        .next {
+            text-align: right;
+            right: 0;
+            left: auto;
+        }
+
+        .head, .box {
+            overflow: hidden;
+        }
+
+        .box {
+            border: 1px solid #aaa;
+            border-right: 0;
+            border-bottom: 0;
+            overflow: auto;
+            width: 100%;
+        }
+
+        .box div {
+            text-align: center;
+            width: 14.28%;
+            line-height: 2em;
+            float: left;
+            border: 1px solid #aaa;
+            border-left: 0;
+            border-top: 0;
+        }
+
+        .box .able {
+            color: #333;
+            cursor: pointer;
+        }
+
+        .box .prevmonth, .box .nextmonth {
+            color: #999;
+        }
+
+        .box .disabled {
+            color: #ccc;
+        }
+
+        .box .able:hover {
+            background: #eee;
+        }
+
+        .box .week {
+            color: #999;
+        }
+
+        .box .choosed {
+            color: #0084ff;
+        }
+    </style>
+
+    <div class="head">
+        <div class="prev" onclick="{prevMonth}">上一月</div>
+        <div class="title">{year}年{month}月</div>
+        <div class="next" onclick="{nextMonth}">下一月</div>
+    </div>
+    <div class="box">
+        <div class="week">日</div>
+        <div class="week">一</div>
+        <div class="week">二</div>
+        <div class="week">三</div>
+        <div class="week">四</div>
+        <div class="week">五</div>
+        <div class="week">六</div>
+        <div each="{array}" date="{date}"
+             class="{'prevmonth':prevmonth,'nextmonth':nextmonth,'choosed':choosed,'able': !disabled}" onclick={choose}>
+            {day}
+        </div>
+    </div>
+    <div clas="btns">
+    </div>
+    <script>
+        var self = this;
+        var today = new Date();
+        self.config = $.extend(true, {choose: today}, self.opts.config);
+        self.now = new Date(self.now || today);
+        self.array = getArray(self.now);
+        self.nextMonth = function (e) {
+            var chooseDay = self.now.getDate();
+            if (chooseDay > data.day3) {
+                chooseDay = data.day3;
+            }
+            self.now = new Date(data.year3 + '-' + data.month3 + '-' + chooseDay);
+            self.array = getArray(self.now);
+            self.update();
+        };
+        self.prevMonth = function (e) {
+            var chooseDay = self.now.getDate();
+            if (chooseDay > data.day2) {
+                chooseDay = data.day2;
+            }
+            self.now = new Date(data.year2 + '-' + data.month2 + '-' + chooseDay);
+            self.array = getArray(self.now);
+            self.update();
+        };
+
+        var data = {};
+        // 取得该日期的相关信息: 本月天数，上个月天数，本月第一天星期
+        function getArray(date) {
+            var month = date.getMonth() + 1, year = date.getFullYear(), date = date.getDate(), month2 = month - 1, year2 = year, month3 = month + 1, year3 = year;
+            self.year = year, self.month = month;
+            if (month2 < 1) {
+                year2 -= 1;
+                month2 = 12;
+            }
+            if (month3 > 12) {
+                month3 = 1;
+                year3 += 1;
+            }
+            var day = getMonthDay(month, year), day2 = getMonthDay(month2, year2);
+            var week = (new Date(year + '-' + month + '-1')).getDay() || 7;
+            data = {
+                year: year,
+                month: month,
+                day: day,
+                month2: month2,
+                year2: year2,
+                day2: day2,
+                month3: month3,
+                year3: year3,
+                day3: getMonthDay(month3, year3)
+            };
+            var arr = [];
+            for (var i = 0; i < week; i++) {
+                arr.unshift({date: year2 + '-' + month2 + '-' + (day2 - i), day: day2 - i, prevmonth: true});
+            }
+            for (var i = 1; i <= day; i++) {
+                arr.push({date: year + '-' + month + '-' + i, day: i, choosed: i == date});
+            }
+            i = 1;
+            while (arr.length < 42) {
+                arr.push({date: year3 + '-' + month3 + '-' + i, day: i, nextmonth: true});
+                i += 1;
+            }
+            return arr;
+        }
+
+        function getMonthDay(month, year) {
+            if (month == 2) {
+                if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+                    return 29;
+                } else {
+                    return 28;
+                }
+            } else {
+                switch (month) {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 12:
+                        return 31;
+                    default:
+                        return 30;
+                }
+            }
+        }
+
+
+        self.choose = function (e) {
+            var date = e.target.getAttribute('date');
+            if (date) {
+                self.now = new Date(date);
+                self.opts.input && $(self.opts.input).val(date);
+            }
+        };
+        console.log(getArray(new Date()));
+    </script>
+</datepicker>

@@ -1,5 +1,8 @@
 #notejs开发
 
+15.11.30
+  > 问答项目原来使用node0.12，升级node4后模块gulp-sass不能使用，重新编译也不行。。好像是visual stadio的问题
+
 14.09.16
   > 最近使用nodejs重写校园网模块和微信消息处理，采用mysql存储数据，jade生成静态文件，expressjs路由判断。
     当把页面生成后，才发现没有办法像php、jsp脚本语言一样根据用户显示不同内容。
