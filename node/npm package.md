@@ -1,4 +1,12 @@
 # 有用的npm包记录
+
+# [webfont相关](http://www.uisdc.com/the-great-chinese-webfont)
+* css.js：它能将 CSS 解析成语法树，并且能够较好的容错适应各种 hack 语法
+* jsdom：它能够在 NodeJS 中实现 W3C DOM API，使得我可以使用 document.querySelectorAll() 方法输入 CSS 选择器来查找 HTML 节点上的文本
+* font-optimizer：这是一个使用 Perl 编写的字体优化工具，可以高效的删除字体中指定的字符
+* ttf2eot、ttf2woff、ttf2svg：是它们完成了跨浏览器字体格式转码的工作
+
+
 * gulp-util gulp常用工具库
 * gulp-uglify 压缩js文件
 * gulp-concat 连接文件
