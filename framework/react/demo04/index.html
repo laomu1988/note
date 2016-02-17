@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="cn">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var HelloMessage = React.createClass({
+        render: function() {
+          return <div>
+          <p>HelloMessage组件属性</p>
+          <p>name: {this.props.name}</p>
+          <p>date: {this.props.date}</p>
+          <p>class: {this.props.class}</p>
+          <p>className: {this.props.className}</p>
+          <p>for: {this.props.for}</p>
+          <p>htmlFor: {this.props.htmlFor}</p>
+          </div>;
+        }
+      });
+      ReactDOM.render(
+      <HelloMessage name="张三" date="2015-10-30" className="icon iocn_home" for="AAA" htmlFor="CCC"/>,
+              document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
