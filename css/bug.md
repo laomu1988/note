@@ -1,5 +1,7 @@
 #bug及解决方法
 
+* firfox 不支持background-position-x/y，最好使用background-position设置背景图
+
 
 #CSS
   * [div多余高度](http://frontpage.sinaapp.com/testfooter3.html)

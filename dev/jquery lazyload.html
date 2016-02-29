@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>测试懒加载</title>
+    <script src="../lib/jquery/jquery-1.11.3.js"></script>
+    <script src="../lib/jquery/jquery.lazyload.js"></script>
+    <style>
+        img {
+            width: 200px; height: 100px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/1.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<img class="lazy" data-original="img/2.jpg"/>
+<script>
+    $(function () {
+        $('img.lazy').lazyload();
+    });
+</script>
+</body>
+</html>
