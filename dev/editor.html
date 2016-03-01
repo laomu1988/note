@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Editable WYSIWYG</title>
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css" rel="stylesheet">
+    <link href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+
+    <style>
+        #editor {
+            resize: vertical;
+            overflow: auto;
+            border: 1px solid silver;
+            border-radius: 5px;
+            min-height: 100px;
+            box-shadow: inset 0 0 10px silver;
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="container-fluid">
+        <div id='pad-wrapper'>
+            <div id="editparent">
+                <div id='editControls' class='span12' style='text-align:center; padding:5px;'>
+                    <div class='btn-group' role="group">
+                        <a class='btn btn-default' data-role='undo' href='#'><i class='fa fa-undo'></i></a>
+                        <a class='btn btn-default' data-role='redo' href='#'><i class='fa fa-repeat'></i></a>
+                    </div>
+                    <div class='btn-group'>
+                        <a class='btn btn-default' data-role='bold' href='#'><b>Bold</b></a>
+                        <a class='btn btn-default' data-role='italic' href='#'><em>Italic</em></a>
+                        <a class='btn btn-default' data-role='underline' href='#'><u><b>U</b></u></a>
+                        <a class='btn btn-default' data-role='strikeThrough' href='#'><strike>abc</strike></a>
+                        <a class="btn btn-default" data-role="link" href="#">Link</a>
+                        <a class="btn btn-default" data-role="unlink" href="#">Unlink</a>
+                    </div>
+                    <div class='btn-group'>
+                        <a class='btn btn-default' data-role='justifyLeft' href='#'><i class='fa fa-align-left'></i></a>
+                        <a class='btn btn-default' data-role='justifyCenter' href='#'><i class='fa fa-align-center'></i></a>
+                        <a class='btn btn-default' data-role='justifyRight' href='#'><i
+                                class='fa fa-align-right'></i></a>
+                        <a class='btn btn-default' data-role='justifyFull' href='#'><i class='fa fa-align-justify'></i></a>
+                    </div>
+                    <div class='btn-group'>
+                        <a class='btn btn-default' data-role='indent' href='#'><i class='fa fa-indent'></i></a>
+                        <a class='btn btn-default' data-role='outdent' href='#'><i class='fa fa-dedent'></i></a>
+                    </div>
+                    <div class='btn-group'>
+                        <a class='btn btn-default' data-role='insertUnorderedList' href='#'><i
+                                class='fa fa-list-ul'></i></a>
+                        <a class='btn btn-default' data-role='insertOrderedList' href='#'><i class='fa fa-list-ol'></i></a>
+                    </div>
+                    <div class='btn-group'>
+                        <a class='btn btn-default' data-role='h1' href='#'>h<sup>1</sup></a>
+                        <a class='btn btn-default' data-role='h2' href='#'>h<sup>2</sup></a>
+                        <a class='btn btn-default' data-role='p' href='#'>p</a>
+                    </div>
+                    <div class='btn-group'>
+                        <a class='btn btn-default' data-role='subscript' href='#'><i class='fa fa-subscript'></i></a>
+                        <a class='btn btn-default' data-role='superscript' href='#'><i
+                                class='fa fa-superscript'></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <span class='btn btn-default' data-role='bold'><b>Bold2</b></span>
+                    </div>
+                </div>
+                <div id='editor' class='span12' style='' contenteditable>
+                    <h1>contenteditable</h1>
+
+                    <p> document.execCommand('bold')</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade createLink">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true"></span></button>
+                <h4 class="modal-title">填写链接</h4>
+            </div>
+            <div class="modal-body">
+                <p><input type="text" class="input_link" value="" placeholder="请输入链接地址"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.js"></script>
+<script>
+    $(function () {
+        var temp = {}, range = null;
+        $('.createLink').on('click', '.btn-primary', function () {
+            var link = $('.createLink').find('.input_link').val();
+            if (!link) {
+                return false;
+            }
+            $('.createLink').modal('hide');
+
+            document.getSelection().addRange(range);
+            document.execCommand('createLink', false, link);// 创建链接
+        });
+        $('#editControls .btn[data-role]').click(function (e) {
+            switch ($(this).data('role')) {
+                case 'link':
+                    var selection = document.getSelection();
+                    range = selection.getRangeAt(0);
+                    temp = {
+                        startOffset: range.startOffset,
+                        endOffset: range.endOffset,
+                        endContainer: range.endContainer,
+                        startContainer: range.startContainer
+                    };
+                    $('.createLink').modal('show');
+                    // document.execCommand('createLink', false, '#');// 创建链接
+                    //document.execCommand('inserthtml', false, '<a href="#">' + getSelection().toString() + '</a>');
+                    break;
+                case 'h1':
+                case 'h2':
+                case 'p':
+                    document.execCommand('formatBlock', false, '<' + $(this).data('role') + '>');
+                    break;
+                default:
+                    document.execCommand($(this).data('role'), false, null);
+                    break;
+            }
+        })
+    });
+</script>
+</body>
+</html>
