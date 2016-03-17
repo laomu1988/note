@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>测试闭包</title>
+</head>
+<body>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<script>
+    var divs = document.getElementsByTagName('div');
+    for (var i = 0; i < divs.length; i++) {
+        divs[i].onclick = (function (a) {
+            return function () {
+                alert(a);
+            }
+        })(i);
+    }
+</script>
+</body>
+</html>
