@@ -1,10 +1,15 @@
+/**
+ * 可以使用proxy-static
+ * */
+
 var request = require('request');
 var path = require('path');
+var url = require('url');
 var fs = require('fs');
 
 var src = 'http://dev.list.leanapp.cn/api/project/list?finished=false&removed=false';
 
-console.log(path.parse(src));
+console.log(url.parse(src));
 
 var fileName = 'test.json';
 
