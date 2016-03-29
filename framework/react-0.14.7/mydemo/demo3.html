@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>demo1</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div class="test"></div>
+<script type="text/babel">
+    var TodoList = React.createClass({
+        render: function(){
+            return <div>{this.props.items.map(function(item){
+                return <li>{item.text}</li>
+            })}</div>;
+        }
+    });
+    var Todo = React.createClass({
+        getInitialState: function () {
+            return {items: [], text: ''}
+        },
+        onChange: function (e) {
+            this.setState({text: e.target.value});
+        },
+        handleSubmit: function (e) {
+            e.preventDefault();
+            var nextItems = this.state.items.concat([{
+                text: this.state.text,
+                id: Date.now()
+            }]);
+            this.setState({items: nextItems, text: ''});
+        },
+        render: function(){
+            return (
+                    <div>
+                            <h3>Todo</h3>
+                            <TodoList items={this.state.items} />
+                            <form onSubmit={this.handleSubmit}>
+                                <input onChange={this.onChange} value={this.state.text} />
+                                <button>{'Add #' + (this.state.items.length + 1)}</button>
+                            </form>
+                    </div>
+            );
+        }
+    });
+    ReactDOM.render(<Todo />, document.querySelector('.test'));
+</script>
+</body>
+</html>

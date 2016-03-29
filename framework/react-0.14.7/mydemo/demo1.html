@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>demo1</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div class="test"></div>
+<script type="text/babel">
+    var Test = React.createClass({
+        render: function () {
+           return <div>Hello {this.props.name}</div>;
+        }
+    });
+    ReactDOM.render(<Test name="world" />, document.querySelector('.test'));
+</script>
+</body>
+</html>

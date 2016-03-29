@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>demo1</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div class="test"></div>
+<script type="text/babel">
+    var Timer = React.createClass({
+        getInitialState: function () {
+            return {secondsElapsed: 0}
+        },
+        tick: function () {
+            this.setState({secondsElapsed: this.state.secondsElapsed += 1});
+        },
+        componentDidMount: function () {
+            this.interval = setInterval(this.tick, 1000);
+        },
+        componentWillUnmount: function () {
+            clearInterval(this.inverval);
+        },
+        render: function () {
+            return <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
+        }
+    });
+    ReactDOM.render(<Timer />,document.querySelector('.test'));
+</script>
+</body>
+</html>

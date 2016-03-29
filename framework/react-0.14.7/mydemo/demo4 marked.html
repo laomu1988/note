@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>demo1</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+    <script src="../build/marked.js"></script>
+    <style>
+        textarea{
+            width: 300px;height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="test"></div>
+<div>
+    <textarea>
+
+    </textarea>
+</div>
+<script>
+    document.querySelector('textarea').onchange= function(e){
+        console.log(e.target.value);
+    }
+</script>
+<script type="text/babel">
+    var MarkdownEditor = React.createClass({
+        getInitialState: function () {
+            return {value: 'Type some * markdown * here!\n# testTitle\n Test'}
+        },
+        handleChange: function (e) {
+            this.setState({value: e.target.value});
+        },
+        rawMarkup: function () {
+            return {__html: marked(this.state.value,{sanitize:true})}
+        },
+        render: function () {
+            return (
+                    <div className="MarkdownEditor">
+                            <h3>Input</h3>
+                            <textarea
+                                onChange={this.handleChange}
+                                ref="textarea" defaultValue={this.state.value} />
+                            <h3>Output</h3>
+                            <div className="content" dangerouslySetInnerHTML={this.rawMarkup()}/>
+                    </div>
+            );
+        }
+    });
+    ReactDOM.render(<MarkdownEditor />,document.querySelector('.test'));
+</script>
+</body>
+</html>
