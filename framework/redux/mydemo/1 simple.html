@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Redux</title>
+    <script src="node_modules/redux/dist/redux.js"></script>
+</head>
+<body>
+<div>
+    <span>Now Data is<i id="result"></i>. </span>
+    <button id="plus">plus</button>
+    <button id="reduce">reduce</button>
+</div>
+<script>
+    function counter(state, event) {
+        if (typeof state === 'undefined') {
+            return 1;
+        }
+        switch (event && event.type) {
+            case 'plus':
+                return state + 1;
+            case 'reduce':
+                return state - 1;
+            default:
+                return 1;
+        }
+    }
+    var store = Redux.createStore(counter);
+    var render = function () {
+        var state = store.getState();
+        console.log('render:',state);
+        var dom = document.getElementById('result');
+        dom.innerHTML = state;
+    };
+    render();
+    store.subscribe(render);
+
+    document.getElementById('plus').addEventListener('click', function () {
+        store.dispatch({type: 'plus'});
+    })
+    document.getElementById('reduce').addEventListener('click', function () {
+        store.dispatch({type: 'reduce'});
+    })
+
+</script>
+</body>
+</html>
