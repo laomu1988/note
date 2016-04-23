@@ -25375,8 +25375,6 @@
 	    value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -25387,55 +25385,33 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Filter = function (_Component) {
-	    _inherits(Filter, _Component);
-
-	    function Filter() {
-	        _classCallCheck(this, Filter);
-
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Filter).apply(this, arguments));
-	    }
-
-	    _createClass(Filter, [{
-	        key: 'render',
-	        value: function render() {
-	            var changeFilter = this.props.changeFilter;
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'button',
-	                    { onClick: function onClick() {
-	                            return changeFilter(_constant2.default.Show_All);
-	                        } },
-	                    'show All'
-	                ),
-	                _react2.default.createElement(
-	                    'button',
-	                    { onClick: function onClick() {
-	                            return changeFilter(_constant2.default.Show_Active);
-	                        } },
-	                    'show active'
-	                ),
-	                _react2.default.createElement(
-	                    'button',
-	                    { onClick: function onClick() {
-	                            return changeFilter(_constant2.default.Show_Complete);
-	                        } },
-	                    'show complete'
-	                )
-	            );
-	        }
-	    }]);
-
-	    return Filter;
-	}(_react.Component);
+	var Filter = function Filter(changeFilter) {
+	    return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	            'button',
+	            { onClick: function onClick() {
+	                    return changeFilter(_constant2.default.Show_All);
+	                } },
+	            'show All'
+	        ),
+	        _react2.default.createElement(
+	            'button',
+	            { onClick: function onClick() {
+	                    return changeFilter(_constant2.default.Show_Active);
+	                } },
+	            'show active'
+	        ),
+	        _react2.default.createElement(
+	            'button',
+	            { onClick: function onClick() {
+	                    return changeFilter(_constant2.default.Show_Complete);
+	                } },
+	            'show complete'
+	        )
+	    );
+	};
 
 	exports.default = Filter;
 
@@ -25517,8 +25493,6 @@
 	var _filter2 = _interopRequireDefault(_filter);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	console.log(_todos2.default);
 
 	var todoApp = (0, _redux.combineReducers)({
 	    todos: _todos2.default,
