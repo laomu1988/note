@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>测试不同width时，canvas像素宽度</title>
+    <style>
+        .canvas2 {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div style="width: 500px;">
+    <canvas></canvas>
+</div>
+
+<div style="width: 500px;">
+    <canvas width="500"></canvas>
+</div>
+
+<div style="width: 500px;">
+    <canvas width="100%"></canvas>
+</div>
+<div style="width: 500px;">
+    <canvas width="100"></canvas>
+</div>
+
+<div style="width: 500px;">
+    <canvas class="canvas2"></canvas>
+</div>
+
+<div style="width: 500px;">
+    <canvas width="500" class="canvas2"></canvas>
+</div>
+
+<div style="width: 500px;">
+    <canvas width="100%" class="canvas2"></canvas>
+</div>
+<div style="width: 500px;">
+    <canvas width="100" class="canvas2"></canvas>
+</div>
+<script>
+    function paint(canvas) {
+        if (!canvas || !canvas.getContext) {
+            return; // not compatible
+        }
+        var ctx = canvas.getContext("2d");
+        ctx.lineWidth = 1;
+        ctx.lineCap = "butt";
+        ctx.fillStyle = "#000";
+        ctx.fillRect(10, 0, 1, 100);
+    }
+    var canvas = document.querySelectorAll('canvas');
+    for (var i = 0; i < canvas.length; i++) {
+        paint(canvas[i]);
+    }
+    /**
+     * 结论： canvas在不通过style设置宽和高时，内容像素和实际像素一致，设置style后，就会自动缩放。width=“100%”和width=“100”是一样的，%完全无用
+     * */
+</script>
+</body>
+</html>
