@@ -4,42 +4,46 @@
 
 # mac 快捷键MAC苹果系统：
 
-快捷键	作用
-command + d	副本当前行或选中的区块
+## 查找相关
+command + shift + o 根据文件名查找文件
 command + f	查找当前文档
-command + g	跳转到文档的某一行某一列
-command + p	显示参数信息
 command + r	替换当前文档
-command + w	选中当前单词、行、区块等
-command + y	删除整行
-command + mouseover	显示主要信息
-command + [	移动光标到代码块前
-command + ]	移动光标到代码块尾
-command + +	折叠区块
-command + -	展开区块
-command + ->	光标移到行尾
-command + <-	光标移到行头
-快捷键	作用
+
+## 代码相关
+command + d	副本当前行或选中的区块
 command + option + t	将代码以某种格式包括起来
 command + option + l	将代码格式化
-快捷键	作用
-command + shift + o	快速查找文件
 command + shift + u	切换大小写
-command + shift + [	选中到代码块前
-command + shift + ]	选中到代码块尾
-command + shift + +	折叠所有区块
-command + shift + -	展开所有区块
-快捷键	作用
 shift + return	在任意位置换行
 shift + F6	高级修改，可快速修改光标所在的标签、变量、函数等
+
+## 定位相关
+option + f1 在左侧文件树中定位到当前打开文件
+command + g	跳转到文档的某一行某一列
+command + w	选中当前单词、行、区块等
+command + y	删除整行
+command + [	移动光标到代码块前
+command + ]	移动光标到代码块尾
+command + ->	光标移到行尾
+command + <-	光标移到行头
+option + ->	以单词为单位移动光标
+option + <-	以单词为单位移动光标
+command + shift + [	切换到上一个Tab页
+command + shift + ]	切换到下一个Tab页
+
+
+# 其他
+command + +	折叠区块
+command + -	展开区块
+command + shift + +	折叠所有区块
+command + shift + -	展开所有区块
+command + p	显示参数信息
+command + mouseover	显示主要信息
 control + shift + f	find in path
 control + shift + j	合并行
 control + shift + r	replace in path
-快捷键	作用
 option + delete	delete to word start
 option + fn + delete	delete to word end
-option + ->	以单词为单位移动光标
-option + <-	以单词为单位移动光标
 
 
 
